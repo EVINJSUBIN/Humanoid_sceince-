@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEbm-B0vsnY_qo_cdiGhXK7lOBs500kbA",
+            authDomain: "the-ev-bdad9.firebaseapp.com",
+            databaseURL: "https://the-ev-bdad9-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "the-ev-bdad9",
+            storageBucket: "the-ev-bdad9.appspot.com",
+            messagingSenderId: "552007217470",
+            appId: "1:552007217470:web:252e3bd964e8a143c87c6f",
+            measurementId: "G-S4Y32NTKJV"
+
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.googleSignOut = function () {
+            signOut(auth).then(() => {
+                window.location.replace('index.html');
+            }).catch((error) => {
+                console.error("Error during sign out: ", error);
+            });
+        };
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // Redirect to login page if user is not authenticated
+                window.location.href = "index.html"; // Replace with your login page
+            }
+        });
+    </script>
+    <div class="main-container">
+
+        <div class="navbar">
+            <a href="#" class="logo">
+                .EV
+            </a>
+            <ul id="listSec">
+                <li><a href="" class="active">Home</a></li>
+                <li><a href="">Features</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">Blogs</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <button class="btn logout-btn" onclick="googleSignOut()">Logout</button>
+            </ul>
+            <div class="btn-sec">
+                <div class="toggle-btn" id="toggleBtn">
+                    <div class="bar">Hi</div>
+                    <div class="bar">Bye</div>
+                    <div class="bar">See</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-sec">
+            <div class="left-sec">
+                <h1>Revolutionary Smart Watch</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima omnis eum maiores repellat,
+                    exercitationem illum amet hic</p>
+                <button>
+                    Order Now
+                </button>
+                <div class="down-btn">
+                    <div class="under-btn"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="product-sec">
+        <h1>
+            Why Choose Our Smart Watch ?
+        </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, asperiores error odit repellendus
+            praesentium quasi et aliquam perferendis iusto esse quod totam.</p>
+
+        <div class="card-sec">
+            <div class="card">
+                <h2>Advance Interface</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde repudiandae labore nostrum incidunt
+                    fugit ex inventore rem natus non ea.</p>
+            </div>
+
+            <div class="card">
+                <h2>Precision Stopwatch</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde repudiandae labore nostrum incidunt
+                    fugit ex inventore rem natus non ea.</p>
+            </div>
+
+            <div class="card">
+                <h2>Accurate GPS</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde repudiandae labore nostrum incidunt
+                    fugit ex inventore rem natus non ea.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var listSec = document.getElementById('listSec');
+        var toggleBtn = document.getElementById('toggleBtn');
+
+
+        toggleBtn.addEventListener('click', () => {
+            listSec.classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>
